@@ -30,7 +30,7 @@
       <div id="file-list" class="file-list hidden"></div>
       <div id="room-info" class="room-info hidden">
         <p>このコードをWindows側に伝えてください：</p>
-        <div class="room-code" id="room-code"></div>
+        <div class="room-code" id="room-code">接続中…</div>
         <button class="btn btn-copy" onclick="copyCode()">コピー</button>
       </div>
       <div id="sender-status" class="status hidden"></div>
@@ -45,7 +45,7 @@
       <h2>受信側</h2>
       <div id="code-input-area">
         <p>送信側から受け取ったコードを入力してください：</p>
-        <input type="text" id="room-input" placeholder="例: A1B2C3" maxlength="6">
+        <input type="text" id="room-input" placeholder="例: abc123" maxlength="12">
         <button class="btn btn-primary" onclick="joinRoom()">接続する</button>
       </div>
       <div id="receiver-status" class="status hidden"></div>
@@ -57,7 +57,7 @@
     </div>
   </div>
 
-  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
