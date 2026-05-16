@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ファイル転送</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📁 ファイル転送</h1>
+    <p class="subtitle">画質を落とさずにMac → Windowsへ送る</p>
+
+    <div id="mode-select" class="card">
+      <button class="btn btn-primary" onclick="startSend()">📤 送る（Mac側）</button>
+      <button class="btn btn-secondary" onclick="startReceive()">📥 受け取る（Windows側）</button>
+    </div>
+
+    <!-- 送信側 -->
+    <div id="sender-panel" class="card hidden">
+      <h2>送信側</h2>
+      <div id="drop-zone" class="drop-zone">
+        <div class="drop-icon">📂</div>
+        <p>ここにファイルをドラッグ&ドロップ<br><span>または</span></p>
+        <label class="file-label">
+          ファイルを選択
+          <input type="file" id="file-input" multiple accept="image/*,video/*">
+        </label>
+      </div>
+      <div id="file-list" class="file-list hidden"></div>
+      <div id="room-info" class="room-info hidden">
+        <p>このコードをWindows側に伝えてください：</p>
+        <div class="room-code" id="room-code"></div>
+        <button class="btn btn-copy" onclick="copyCode()">コピー</button>
+      </div>
+      <div id="sender-status" class="status hidden"></div>
+      <div id="progress-bar-wrap" class="progress-wrap hidden">
+        <div id="progress-bar" class="progress-bar"></div>
+        <span id="progress-text">0%</span>
+      </div>
+    </div>
+
+    <!-- 受信側 -->
+    <div id="receiver-panel" class="card hidden">
+      <h2>受信側</h2>
+      <div id="code-input-area">
+        <p>送信側から受け取ったコードを入力してください：</p>
+        <input type="text" id="room-input" placeholder="例: A1B2C3" maxlength="6">
+        <button class="btn btn-primary" onclick="joinRoom()">接続する</button>
+      </div>
+      <div id="receiver-status" class="status hidden"></div>
+      <div id="progress-bar-wrap-r" class="progress-wrap hidden">
+        <div id="progress-bar-r" class="progress-bar"></div>
+        <span id="progress-text-r">0%</span>
+      </div>
+      <div id="received-files" class="received-files hidden"></div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
